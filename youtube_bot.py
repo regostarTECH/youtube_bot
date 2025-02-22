@@ -1,7 +1,7 @@
 import os
 import logging
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, filters  # <-- filters deb o'zgartirildi
 from pytube import YouTube
 from dotenv import load_dotenv
 
@@ -51,7 +51,7 @@ def main() -> None:
 
     # Handlerni qo'shish
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, download_video))
+    dispatcher.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, download_video))  # <-- filters.TEXT va filters.COMMAND deb o'zgartirildi
 
     # Botni ishga tushurish
     updater.start_polling()
